@@ -1,10 +1,24 @@
-Heroku buildpack: TeX
+Heroku buildpack: XeLaTeX
 =====================
 
 This is a [Heroku buildpack](http://devcenter.heroku.com/articles/buildpacks)
-for working with TeX documents. In its raw form, it simply bundles a working
-TeX Live environment into your Heroku app and doesn't do anything else with it.
+for XeLaTeX documents compilation on heroku. It just bundles a statically-linked
+working TeX Live environment - nothing more.
 
+To use the environment, unpack the .tar.xz archive in some directory and add its
+./buildpack/bin/x86_64-linux directory into the $PATH.
+
+Then just run your command - e.g.:
+
+    $ xelatex --shell-escape -synctex=1 -interaction=nonstopmode *.tex
+
+If you added some .sty packages, reindex them:
+
+    $ mktexlsr
+
+The fonts are a bit problem - link them hardly.
+
+Note: Make sure you copy also the file, not just the link! (Fonts in Linux are often just linked.)
 
     $ ls
 
