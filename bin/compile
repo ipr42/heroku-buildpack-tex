@@ -22,6 +22,9 @@ cp -r $BIN_DIR/../buildpack $BUILD_DIR
 # copy also fonts directory into $BUILD_DIR - there will be flat fonts dir structure
 cp -r "$BIN_DIR/../fonts" $BUILD_DIR
 
+mkdir -p "$BUILD_DIR/.profile.d/"
+cp "$BIN_DIR/latex.sh" "$BUILD_DIR/.profile.d/latex.sh"
+
 # Check for an essential binary to make sure it's installed
 if [ ! `which xelatex` ]; then
     build-warn "XeLaTeX Live installation failed"
